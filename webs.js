@@ -2,6 +2,7 @@
 var restify = require('restify');
 var uuid = require('uuid')
 var queueTillDone = require('./queue-till-done')
+var connectToSlack = require('./slacks.js').connectToSlack
 
 var commands = {
   '/listprivate': listprivate,
@@ -45,10 +46,12 @@ function addSlack(confFile, config) {
     var toSave = confFile.load()
     toSave.slacks[botkey] = slack
     confFile.save(toSave)
+
     connectToSlack(config.slacks[botkey] = slack)
-    res.send(200, {result: 'ok', botkey: botkey, name: slack.name})
     console.log('Added new route:')
     console.log('  /privatebot/'+botkey + ' ('+slack.name+')')
+
+    res.send(200, {result: 'ok', botkey: botkey, name: slack.name})
     next()
   }
 }

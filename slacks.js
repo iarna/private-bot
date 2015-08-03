@@ -8,7 +8,8 @@ module.exports = function setup(config) {
   values(config.slacks).forEach(function (slack) { connectToSlack(slack) })
 }
 
-function connectToSlack(slack) {
+
+var connectToSlack = module.exports.connectToSlack = function (slack) {
   slack.client = new SlackClient(slack.apikey, true, true)
   slack.whenReady = queueTillDone(function (done) {
     slack.client.once('open', done)
