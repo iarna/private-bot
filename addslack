@@ -1,0 +1,18 @@
+#!/bin/sh
+NAME=$1
+APIKEY=$2
+if [ -z "$APIKEY" ]; then
+    echo 'usage: addslack "name" "apikey"'
+    exit 1
+fi
+CONTROLKEY=$(json controlkey < privatebot-conf.json)
+curl -X POST -H 'Content-Type: application/json' http://localhost:8999/addslack --data "$(
+cat <<EOJSON
+{
+  "controlkey": "$CONTROLKEY",
+  "name": "$NAME",
+  "apikey": "$APIKEY"
+}
+EOJSON
+)"
+echo

@@ -1,0 +1,26 @@
+{
+  "name": "private-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "json": "^9.0.3",
+    "restify": "^3.0.3",
+    "slack-client": "^1.4.1"
+  },
+  "bin": {
+    "add-slack": "./addslack",
+    "private-bot": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "npm": "npm",
+    "node": "node",
+    "start": "node index.js"
+  },
+  "author": "Rebecca Turner <me@re-becca.org> (http://re-becca.org/)",
+  "license": "ISC",
+  "devDependencies": {
+    "uuid": "^2.0.1"
+  }
+}
