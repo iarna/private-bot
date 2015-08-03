@@ -6,7 +6,8 @@
   "dependencies": {
     "json": "^9.0.3",
     "restify": "^3.0.3",
-    "slack-client": "^1.4.1"
+    "slack-client": "^1.4.1",
+    "uuid": "^2.0.1"
   },
   "bin": {
     "add-slack": "./addslack",
@@ -19,8 +20,5 @@
     "start": "node index.js"
   },
   "author": "Rebecca Turner <me@re-becca.org> (http://re-becca.org/)",
-  "license": "ISC",
-  "devDependencies": {
-    "uuid": "^2.0.1"
-  }
+  "license": "ISC"
 }
