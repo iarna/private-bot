@@ -16,15 +16,29 @@ To see a list of private channels you can join:
 ```
 /listprivate
 ```
+```
+slackbot [xx:xx] Only you can see this message
+Private channels available:
+ 🔒test – starter test group
+```
+
 
 To request membership:
 
 ```
-/joinprivate #channel
+/joinprivate test
+```
+```
+slackbot [xx:xx] Only you can see this message
+We've requested that someone currently in #test send you an invitation. If no one is active at the moment this may take some time, please be patient.
 ```
 
-Join's aren't automatic– bots can't invite people to channels– but the folks
-in the channel will be notified that you'd like to join.
+And over in the private channel, members will see:
+
+```
+privatebot BOT [xx:xx]
+Please kindly invite @user to the this channel.
+```
 
 ### As a slack admin
 
