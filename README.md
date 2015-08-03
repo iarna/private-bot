@@ -43,16 +43,16 @@ Please kindly invite @user to the this channel.
 
 ### As a slack admin
 
+To install:
+
+```
+npm install -g slack-private-chan-bot
+```
+
 To run:
 
 ```
-npm start
-```
-
-Or:
-
-```
-node index.js
+private-chan-bot
 ```
 
 The first time you run it a `privatebot-conf.json` will be created to hold
@@ -68,7 +68,7 @@ Pick whatever name you like– I used `privatebot`.  It will generate an "API
 token" that starts with `xoxb-` – copy this and run the following:
 
 ```
-./addslack "Name of your Slack" "xoxb-API-token"
+add-private-chan-bot "Name of your Slack" "xoxb-API-token"
 ```
 
 You should see your server process print out something like:
@@ -79,7 +79,7 @@ You should also see the bot login on your slack instance.
 
 Next you need to setup your slash commands:
 
-https://winterflower.slack.com/services/new/slash-commands
+https://my.slack.com/services/new/slash-commands
 
 We'll be making two, `/listprivate` and `/joinprivate`
 

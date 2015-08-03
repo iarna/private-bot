@@ -10,8 +10,8 @@
     "uuid": "^2.0.1"
   },
   "bin": {
-    "add-slack": "./addslack",
-    "private-bot": "./index.js"
+    "add-private-chan-bot": "./addslack",
+    "private-chan-bot": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
