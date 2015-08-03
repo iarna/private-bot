@@ -21,7 +21,7 @@ try {
 }
 
 slackSetup(bot)
-webSetup(bot)
+webSetup(confFile, bot)
 
 var next = function allSetup () {
   console.log("Listening on port "+bot.port)

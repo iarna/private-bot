@@ -9,7 +9,7 @@ var commands = {
   'DEFAULT': unknown
 }
 
-module.exports = function setup (config) {
+module.exports = function setup (confFile, config) {
   // NOW, we setup the web half of this
   var server = restify.createServer();
   server.use(restify.gzipResponse());
@@ -22,11 +22,11 @@ module.exports = function setup (config) {
   // protect against spoofing
   var teams = {}
 
-  server.post('/addslack', addSlack(config))
+  server.post('/addslack', addSlack(confFile, config))
   server.post('/privatebot/:botkey', privatebot(teams, config))
 }
 
-function addSlack(config) {
+function addSlack(confFile, config) {
   return function (req, res, next) {
     if (req.params.controlkey !== config.controlkey) {
       res.send(401, {result: 'error', msg: 'invalid control key'})
