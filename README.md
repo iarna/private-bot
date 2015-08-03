@@ -30,7 +30,8 @@ To request membership:
 ```
 ```
 slackbot [xx:xx] Only you can see this message
-We've requested that someone currently in #test send you an invitation. If no one is active at the moment this may take some time, please be patient.
+We've requested that someone currently in #test send you an invitation.
+If no one is active at the moment this may take some time, please be patient.
 ```
 
 And over in the private channel, members will see:
