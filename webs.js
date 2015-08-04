@@ -5,8 +5,11 @@ var queueTillDone = require('./queue-till-done')
 var connectToSlack = require('./slacks.js').connectToSlack
 
 var commands = {
+  '/private': privatecmd,
   '/listprivate': listprivate,
   '/joinprivate': joinprivate,
+  'list': listprivate,
+  'join': joinprivate,
   'DEFAULT': unknown
 }
 
@@ -76,20 +79,30 @@ function privatebot(teams, config) {
         botkey: req.params.botkey
       }
     }
-    if (!team.tokens[req.params.command]) {
-      team.tokens[req.params.command] = req.params.token
+    var command = req.params.command
+    if (!team.tokens[command]) {
+      team.tokens[command] = req.params.token
     }
-    if (team.tokens[req.params.command] !== req.params.token) {
+    if (team.tokens[command] !== req.params.token) {
       res.send(401,'Invalid token')
       return next()
     }
-    var cmd = commands[req.params.command] || commands.DEFAULT
-    cmd(slack, team, req, res, next)
+    var cmd = commands[command] || commands.DEFAULT
+    cmd(slack, team, req.params.text, req, res, next)
   }
 }
 
-function unknown(slack, team, req, res, next) {
-  console.error('Unknown command')
+function privatecmd(slack, team, args, req, res, next) {
+  var matches = args.match(/^(\w+)(?:\s+(.*?))?$/)
+  if (matches) {
+    var subcommand = matches[1]
+    var subargs = matches[2]
+  }
+  var cmd = commands[subcommand] || commands['/listprivate']
+  cmd(slack, team, subargs, req, res, next)
+}
+
+function unknown(slack, team, args, req, res, next) {
   res.send(404,'Unknown command')
   next()
 }
@@ -99,19 +112,20 @@ function channelListing (ch) {
   return '  ' + (ch.is_group ? ':lock:' : '#') + ch.name + ' – ' + desc
 }
 
-function listprivate(slack, team, req, res, next) {
+function listprivate(slack, team, args, req, res, next) {
   slack.whenReady(function () {
     var channelList = slack.channels.length
                     ? slack.channels.map(channelListing).join('\n')
                     : '  None.\nInvite privatebot to your private channel to let it do invites.'
-    res.send('Private channels available:\n' + channelList)
+    res.send('Private channels available:\n' + channelList + '\n' +
+             'To request membership in a group, use /private join [channel-name]')
     next()
   })
 }
 
-function joinprivate(slack, team, req, res, next) {
+function joinprivate(slack, team, args, req, res, next) {
   slack.whenReady(function () {
-    var channel = req.params.text
+    var channel = args
     var matches = slack.channels.filter(function (ch) { return ch.name === channel || '#' + ch.name === channel })
     if (!matches.length) {
       res.send('Unknown channel: ' + channel + '\nTry /listprivate to see the full private channel list.')

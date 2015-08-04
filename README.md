@@ -14,19 +14,20 @@ they join the channel.
 To see a list of private channels you can join:
 
 ```
-/listprivate
+/private
 ```
 ```
 slackbot [xx:xx] Only you can see this message
 Private channels available:
  🔒test – starter test group
+To request membership in a group, use /private join [channel-name]
 ```
 
 
 To request membership:
 
 ```
-/joinprivate test
+/private join test
 ```
 ```
 slackbot [xx:xx] Only you can see this message
@@ -73,23 +74,17 @@ add-private-chan-bot "Name of your Slack" "xoxb-API-token"
 
 You should see your server process print out something like:
 
-  /privatebot/e34731fe-3cef-7a3c-ad5f-be748349ea3a (Name of your Slack)
+> /privatebot/e34731fe-3cef-7a3c-ad5f-be748349ea3a (Name of your Slack)
 
 You should also see the bot login on your slack instance.
 
-Next you need to setup your slash commands:
+Next you need to setup your slash command:
 
 https://my.slack.com/services/new/slash-commands
 
-We'll be making two, `/listprivate` and `/joinprivate`
-
-They should both have the same URL, which should be something like this:
+Add one named `/private` with a URL like:
 
 `http://your.host.name:8999/privatebot/e34731fe-3cef-7a3c-ad5f-be748349ea3a`
-
-For a description I entered `List private channels` and `Join a private channel`
-respectively, with `[#channelname]` as the usage hint for the
-latter.
 
 And that's it, you're done setting up now.  Invite the bot to any channels
 you want in the public listing.
