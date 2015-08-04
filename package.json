@@ -1,6 +1,6 @@
 {
   "name": "slack-private-chan-bot",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A simple slackbot to make managing public private channels easier.  That is, when you want to use private channels for their \"history doesn't show up every time you search, randos can't read your history\" but you want to make knowing about and joining them easier.",
   "main": "index.js",
   "dependencies": {
