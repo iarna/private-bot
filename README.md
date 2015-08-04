@@ -63,7 +63,7 @@ back up.
 
 First you'll need to create a new bot account on your slack instance:
 
-https://my.slack.com/services/new/bot
+[https://my.slack.com/services/new/bot](https://my.slack.com/services/new/bot)
 
 Pick whatever name you like– I used `privatebot`.  It will generate an "API
 token" that starts with `xoxb-` – copy this and run the following:
@@ -80,7 +80,7 @@ You should also see the bot login on your slack instance.
 
 Next you need to setup your slash command:
 
-https://my.slack.com/services/new/slash-commands
+[https://my.slack.com/services/new/slash-commands](https://my.slack.com/services/new/slash-commands)
 
 Add one named `/private` with a URL like:
 
